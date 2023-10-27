@@ -39,5 +39,10 @@ b1=np.array(b)
 x1=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 maxit=1000
 tol=1e-15
-solution= JacobiMethod(A1, b1, x1, tol, maxit)
-print(f"Solution", list(solution))
+
+x,k,err= JacobiSolve(A1, b1, x1, tol, maxit)
+
+print(f"Solution {x}")
+print(f"Number of iterations {k}")
+print(f"relative error {err}")
+

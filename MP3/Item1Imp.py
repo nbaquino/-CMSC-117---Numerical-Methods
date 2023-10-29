@@ -37,7 +37,7 @@ def main():
     y= LUSolve(A2, d)
     print("-"*200)
     print("Pentadiagonal Matrix n=150 M")
-    block(150)
+    # block(150)
     print(f"this is solution x: {np.array(x)}")
     print("Ax=", np.dot(A,x))
     nor_error=np.linalg.norm(np.dot(A,x) - c)/np.linalg.norm(c)
@@ -45,7 +45,7 @@ def main():
     
     print("-"*200)
     print("Pentadiagonal Matrix n=100")
-    block(100)
+    # block(100)
     print(f"this is solution x: {np.array(y)}")
     print("Ay= ", np.dot(A2,y))
     nor_error2=np.linalg.norm(np.dot(A2,y) - d)/np.linalg.norm(d)

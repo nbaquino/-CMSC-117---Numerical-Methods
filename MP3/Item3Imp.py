@@ -13,10 +13,10 @@ def f(x):
     
 def Jf(x):
     a, b, c, d = np.array(x, float)
-    f0 = np.array([20*c - 8*b, -8*a - 4*d, 20*a + 48*c**2, -4*b])
-    f1 = np.array([12, 6, 2, -2])
-    f2 = np.array([8*a + 2*d**2, 2*c, 2*b - 10, 4*a*d])
-    f3 = np.array([-3*d, -4*b, 7*d, -3*a + 7*c])
+    f0 = [20*c - 8*b, -8*a - 4*d, 20*a + 48*c**2, -4*b]
+    f1 = [12, 6, 2, -2]
+    f2 = [8*a + 2*d**2, 2*c, 2*b - 10, 4*a*d]
+    f3 = [-3*d, -4*b, 7*d, -3*a + 7*c]
     
     return np.array([f0, f1, f2, f3])
 

@@ -89,9 +89,7 @@ def newton(f,Jf,x,tol,maxit):
     if err_newton > tol and k_newton == maxit:
         print("Error in tol and / or maxit.")
     return x, err_newton, k_newton
-
-
-            
+  
 def LUKJI(A):
     n = len(A)
     A = np.array(A,dtype=float)

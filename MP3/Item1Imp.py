@@ -22,6 +22,7 @@ def create_matrix(n):
             A[i, i+2] = e[i]
     return A
 
+#function to print the matrix
 def block(n):
     for row in create_matrix(n):
         print(list(row))
@@ -38,7 +39,7 @@ def main():
     print("-"*200)
     print("Pentadiagonal Matrix n=150 M")
     # block(150)
-    print(f"this is solution x: {np.array(x)}")
+    print(f"this is solution x: \n {np.array(x)}")
     print("Ax=", np.dot(A,x))
     nor_error=np.linalg.norm(np.dot(A,x) - c)/np.linalg.norm(c)
     print(f"Nor Error:" , nor_error)
@@ -46,7 +47,7 @@ def main():
     print("-"*200)
     print("Pentadiagonal Matrix n=100")
     # block(100)
-    print(f"this is solution y: {np.array(y)}")
+    print(f"this is solution y:\n {np.array(y)}")
     print("Ay= ", np.dot(A2,y))
     nor_error2=np.linalg.norm(np.dot(A2,y) - d)/np.linalg.norm(d)
     print(f"Nor Error:" , nor_error2)

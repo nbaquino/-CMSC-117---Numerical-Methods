@@ -46,7 +46,7 @@ def main():
     print("-"*200)
     print("Pentadiagonal Matrix n=100")
     # block(100)
-    print(f"this is solution x: {np.array(y)}")
+    print(f"this is solution y: {np.array(y)}")
     print("Ay= ", np.dot(A2,y))
     nor_error2=np.linalg.norm(np.dot(A2,y) - d)/np.linalg.norm(d)
     print(f"Nor Error:" , nor_error2)

@@ -10,16 +10,6 @@ def f(x):
     f3 = -3*a*d - 2*b**2 + 7*c*d - 16
     
     return np.array([f0, f1, f2, f3])
-
-# For letter a
-def f(x):
-    a, b, c, d = np.array(x, float)  
-    f0 = 20*a*c - 8*a*b + 16*c**3 - 4*b*d - 39
-    f1 = 12*a + 6*b + 2*c - 2*d - 11
-    f2 = 4*a**2 + 2*b*c - 10*c + 2*a*d**2 + 7
-    f3 = -3*a*d - 2*b**2 + 7*c*d - 16
-    
-    return np.array([f0, f1, f2, f3])
     
 def Jf(x):
     a, b, c, d = np.array(x, float)

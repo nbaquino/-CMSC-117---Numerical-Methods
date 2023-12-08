@@ -77,6 +77,7 @@ def JacobiSolve(A,b,x,tol,maxit):
         k += 1
     return x, k, err
 
+#substituiton
 def newton(f,Jf,x,tol,maxit):
     x = np.array(x,float)
     err_newton = tol + 1

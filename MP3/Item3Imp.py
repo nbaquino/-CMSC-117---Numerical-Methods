@@ -51,7 +51,7 @@ def main():
     rel_error= err_newton/np.linalg.norm(b1)
     print("Answer for letter a")
     print(f"Solution: {x}")
-    print(f"Number of Iterations: {k_newton}")
+    print(f"Number of Iterations: {k_newton}") 
     print(f"Newton Error: {err_newton}")
     print(f"Relative Error: {rel_error}")
     

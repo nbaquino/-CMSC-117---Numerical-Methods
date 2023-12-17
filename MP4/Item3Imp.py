@@ -1,46 +1,53 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from polyinterp import NewtonLagrangeInterpolation
+from polyinterp import *
+
+def supnorm(f, a, b, numnodes):
+    x = np.linspace(a, b, numnodes)
+    absfx = np.abs(f(x))
+    return max(absfx)
 
 def f(x):
-    return x / (1 - x**2 + x**4)**2
+    return x / ((1 - x**2 + x**4)**2)
 
-def compute_norm(f, pn, start, end, norm_type='2'):
-    x_values = np.linspace(start, end, 9000)
-    difference = f(x_values) - pn(x_values)
-    return np.linalg.norm(difference, ord=float(norm_type))  # Convert norm_type to float
+[a, b] = [-2, 2]
 
-# Plotting
-start, end = -2, 2
-n_values = [5, 10, 20]
+subintervals = [[-2, -1], [-1, 1], [1, 2]]
 
-# Create subplots
-fig, axs = plt.subplots(1, len(n_values), figsize=(15, 5))
+max_norm = 0
+max_norm_interval = None
 
-for i, n in enumerate(n_values):
-    # Generate equidistant nodes
-    nodes = np.linspace(start, end, n+1)
+fig, ax = plt.subplots(figsize=(10, 6))
 
-    # Create interpolation function using Newton-Lagrange method
-    interpolation_function = NewtonLagrangeInterpolation(f, nodes)
+for interval in subintervals:
+    a_i, b_i = interval
+    x_i = np.linspace(a_i, b_i, 11)
+    p_i = NewtonLagrangeInterpolation(f, x_i)
 
-    # Plot f(x) and pn for each n
-    x_values = np.linspace(start, end, 1000)
-    axs[i].plot(x_values, f(x_values), label='f(x)')
-    axs[i].plot(x_values, interpolation_function(x_values), label=f'p{n}(x)')
-    axs[i].set_title(f'n = {n}')
-    axs[i].legend()
+    norm_i = supnorm(lambda x: f(x) - p_i(x), a_i, b_i, 3000)
+
+    if norm_i > max_norm:
+        max_norm = norm_i
+        max_norm_interval = interval
+
+    graph_i = np.linspace(a_i, b_i, 3000)
+
+    ax.plot(graph_i, [p_i(z) for z in graph_i], label=f'Interpolated {interval}', linestyle='dashed')
+    ax.scatter(x_i, f(x_i), label=f'Interpolation points {interval}')
+
+    print(f"Subinterval {interval}: Function norm value: {norm_i}")
+
+print("\nMaximum function norm:")
+if max_norm_interval is not None:
+    print(f"   Subinterval with the max norm: {max_norm_interval}")
+    print(f"   Maximum function norm value  : {max_norm}")
     
-    # Plot the nodes
-    axs[i].plot(nodes, f(nodes), "ro")
-
-    # Add grid and labels
-    axs[i].grid(True)
-    axs[i].set_xlabel('x')  # Fix the function name to set_xlabel
-    axs[i].set_ylabel('y')  # Fix the function name to set_ylabel
-
-    # Compute and print the norms
-    norm_inf = compute_norm(f, interpolation_function, start, end, np.inf)
-    print(f"For n = {n}: ||f - p{n}||_∞ = {norm_inf}")
-
-plt.show()
+    # Plot the subinterval with the maximum norm
+    ax.set_title(f'Piecewise Interpolation - Max Norm Subinterval: {max_norm_interval}')
+    ax.legend()
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
+    plt.tight_layout()
+    plt.show()
+else:
+    print("   No maximum function norm found.")

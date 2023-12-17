@@ -2,8 +2,16 @@ import numpy as np
 
 def NewtonLagrangeInterpolation(f,x):
     '''
+    This function implements the Newton-Lagrange Interpolation method.
     
+    Parameters:
+    f (function): The function to be interpolated.
+    x (array-like): The x-coordinates of the points used for interpolation.
     
+    Returns:
+    p (function): The interpolating polynomial function.
+    
+    The function first constructs a divided difference table, and then uses this table to construct the interpolating polynomial.
     '''
     n=len(x)
     d=np.zeros((n,n), dtype=float)
